@@ -1,0 +1,114 @@
+body {
+  font-family: Helvetica, arial, sans-serif;
+  background-image: url('background.jpg');
+  line-height: 1.6;
+  margin: 20px;
+}
+
+h1 {
+  color: #00a884;
+}
+
+h4 {
+  line-height: 1.6;
+}
+
+textarea,
+input[type=email],
+input[type=date],
+input[type=text],
+input[type=password],
+input[type=submit],
+input[type=button]{
+  padding: 6px;
+  margin: 12px 30px 12px 0;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+}
+
+input.btn.btn-light:focus,
+input.btn.btn-light:active{
+  outline: 1px;
+}
+
+input.btn.btn-light:active{
+  outline: 1px;
+}
+
+input[type=submit],
+input[type=button]{
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  background-color: white;
+  width: 120px;
+}
+
+a,
+a:hover,
+a:active{
+  color: #00a884;
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+li {
+  display: inline;
+}
+
+.navbar-inverse {
+  background: #00a884;
+  border-color: #00a884;
+  color: snow;
+}
+
+.navbar-inverse .nav > li {
+  font-size: 1.5rem;
+  margin-top: 0.43rem;
+  padding: 0 0.43rem;
+}
+
+.navbar-inverse .nav > li > a {
+  border-bottom: 2px solid transparent;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 1.07rem;
+  margin-right: 1.07rem;
+}
+
+.btn.btn-link.logout {
+  border: none;
+  font-size: 1.5rem;
+  margin-right: 1.07rem;
+  line-height: 40px;
+  background-color: transparent;
+  color: snow;
+  box-shadow: 0 0 0;
+  outline: transparent 0;
+}
+
+.navbar-inverse .nav > li > a:hover,
+.navbar-inverse .nav > li > a:focus,
+.navbar-inverse .nav > li.active > a,
+.navbar-inverse .nav > li.active > a:hover,
+.navbar-inverse .nav > li.active > a:focus {
+  border-bottom-color: snow;
+  opacity: 1;
+  border-bottom-width: 1px;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: snow;
+  display: inline;
+}
+
+.navbar-nav>li>a {
+  padding-top: 10px;
+  padding-bottom: 0;
+  line-height: 80px;
+}
+
