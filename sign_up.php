@@ -3,8 +3,7 @@
 require_once "session_starter.php";
 require_once "salt_generator.php";
 
-
-if ( isset($_POST['who']) && isset($_POST['pass']) ) {
+ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     if (strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1) {
         $failure = "User name and password are required"; //shouldn't need to enter here
     } else if (isset($users[$_POST['who']])) {
@@ -22,6 +21,11 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
         header('Location: login.php');
         return;
     }
+}
+if ( isset($failure) && $failure !== false ) {
+    $_SESSION["failure"] = $failure;
+    header("Location: sign_up.php");
+    return;
 }
 ?>
 
@@ -42,8 +46,9 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     <br>
 
     <?php
-    if ( $failure !== false ) {
-        echo('<p style="color: red;">'.htmlentities($failure)."</p>\n");
+    if (strlen($_SESSION["failure"]) > 0 ) {
+        echo('<p style="color: red;">'.htmlentities($_SESSION["failure"])."</p>\n");
+        $_SESSION["failure"] = "";
     }
     ?>
 

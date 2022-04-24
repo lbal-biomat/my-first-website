@@ -2,8 +2,7 @@
 
 require_once "session_starter.php";
 
-$usersfile = "files/users.json";
-
+$_SESSION[session_id()] = 0;
 
 // Check to see if we have some POST data, if we do process it
 if ( isset($_POST['who']) && isset($_POST['pass']) ) {
@@ -14,7 +13,6 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     }
     else {
         $user_pw = $users[$_POST['who']]["ps"];
-        print_r($users);
         $salt = $users[$_POST['who']]['salt'];
         $check = hash('sha512', $salt.$_POST['pass']);
         if ( $check == $user_pw ) {
@@ -26,8 +24,11 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
         }
     }
 }
-else {
-    $_SESSION[session_id()] = 0;
+
+if ( isset($failure) && $failure !== false ) {
+    $_SESSION["failure"] = $failure;
+    header("Location: login.php");
+    return;
 }
 ?>
 
@@ -47,8 +48,9 @@ else {
     <br>
 
     <?php
-    if ( $failure !== false ) {
-        echo('<p style="color: red;">'.htmlentities($failure)."</p>\n");
+    if (strlen($_SESSION["failure"]) > 0 ) {
+        echo('<p style="color: red;">'.htmlentities($_SESSION["failure"])."</p>\n");
+        $_SESSION["failure"] = "";
     }
     ?>
 
