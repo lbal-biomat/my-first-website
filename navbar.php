@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php require_once "bootstrap.php"; ?>
-
-    <link type="text/css" rel="stylesheet" href="rules.css">
-    <meta charset="UTF-8">
-</head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation" id="main_nav_bar"  >
     <div class="container-fluid">
@@ -32,5 +24,4 @@
     </div>
 
 </nav>
-
 </body>
