@@ -48,9 +48,9 @@ if ( isset($failure) && $failure !== false ) {
     <br>
 
     <?php
-    if (strlen($_SESSION["failure"]) > 0 ) {
+    if (isset($_SESSION["failure"]) ) {
         echo('<p style="color: red;">'.htmlentities($_SESSION["failure"])."</p>\n");
-        $_SESSION["failure"] = "";
+        unset($_SESSION["failure"]);
     }
     ?>
 

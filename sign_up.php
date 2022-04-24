@@ -3,6 +3,8 @@
 require_once "session_starter.php";
 require_once "salt_generator.php";
 
+$usersfile = "files/users.json";
+
  if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     if (strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1) {
         $failure = "User name and password are required"; //shouldn't need to enter here
@@ -15,7 +17,12 @@ require_once "salt_generator.php";
         $failure = "Password mismatch";
     }
     else {
-        $salt = random_str();
+        try {
+            $salt = random_str();
+        } catch (Exception $e) {
+            echo "An error happened. Please contact support.";
+            return;
+        }
         $users[$_POST['who']] = array("salt" => $salt, "ps" => hash('sha512', $salt.$_POST['pass']));
         file_put_contents($usersfile, json_encode($users), LOCK_EX);
         header('Location: login.php');
@@ -46,9 +53,9 @@ if ( isset($failure) && $failure !== false ) {
     <br>
 
     <?php
-    if (strlen($_SESSION["failure"]) > 0 ) {
+    if (isset($_SESSION["failure"]) ) {
         echo('<p style="color: red;">'.htmlentities($_SESSION["failure"])."</p>\n");
-        $_SESSION["failure"] = "";
+        unset($_SESSION["failure"]);
     }
     ?>
 

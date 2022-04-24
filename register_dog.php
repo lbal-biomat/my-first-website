@@ -22,10 +22,10 @@ if ( isset($_POST["name"]) && $_POST["name"] != "") {
     return;
 }
 
-if ( isset($_SESSION["info"]) && $_SESSION["info"] != "") {
+if ( isset($_SESSION["info"])) {
     $dogs[$_SESSION["info"]["Name"]] = $_SESSION["info"];
     file_put_contents("$datafile", json_encode($dogs), LOCK_EX);
-    $_SESSION["info"] = "";
+    unset($_SESSION["info"]);
 }
 ?>
 
