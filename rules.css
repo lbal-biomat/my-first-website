@@ -1,5 +1,5 @@
 body {
-  font-family: Helvetica, arial, sans-serif;
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   background-image: url('background.jpg');
   line-height: 1.6;
   margin: 20px;
