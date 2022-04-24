@@ -13,8 +13,9 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
         $failure = "User name not in the system";
     }
     else {
-        $user_pw = $users[$_POST['who']];
-        $salt = $_POST['who'];
+        $user_pw = $users[$_POST['who']]["ps"];
+        print_r($users);
+        $salt = $users[$_POST['who']]['salt'];
         $check = hash('sha512', $salt.$_POST['pass']);
         if ( $check == $user_pw ) {
             $_SESSION[session_id()] = 1;

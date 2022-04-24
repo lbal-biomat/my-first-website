@@ -4,13 +4,32 @@ require_once "session_starter.php";
 
 $usersfile = "files/users.json";
 
+/**
+ * @throws Exception
+ */
+function random_str(
+    int $length = 64,
+    string $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+): string {
+    if ($length < 1) {
+        throw new RangeException("Length must be a positive integer");
+    }
+    $pieces = [];
+    $max = mb_strlen($keyspace, '8bit') - 1;
+    for ($i = 0; $i < $length; ++$i) {
+        $pieces []= $keyspace[random_int(0, $max)];
+    }
+    return implode('', $pieces);
+}
+
 if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     if (strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1) {
         $failure = "User name and password are required"; //shouldn't need to enter here
     } else if (!isset($users[$_POST['who']])) {
         $failure = "User name not in the system";    }
     else {
-        $users[$_POST['who']] = hash('sha512', $_POST['who'].$_POST['pass']);
+        $salt = random_str();
+        $users[$_POST['who']] = array("salt" => $salt, "ps" => hash('sha512', $salt.$_POST['pass']));
         file_put_contents($usersfile, json_encode($users), LOCK_EX);
         header('Location: login.php');
         return;
