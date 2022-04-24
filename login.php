@@ -4,11 +4,6 @@ require_once "session_starter.php";
 
 $usersfile = "files/users.json";
 
-if ( isset($_POST['logout']) ) {
-    $_SESSION[session_id()] = 0;
-    header('Location: login.php');
-    return;
-}
 
 // Check to see if we have some POST data, if we do process it
 if ( isset($_POST['who']) && isset($_POST['pass']) ) {
@@ -29,6 +24,9 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
             $failure = "Incorrect password";
         }
     }
+}
+else {
+    $_SESSION[session_id()] = 0;
 }
 ?>
 

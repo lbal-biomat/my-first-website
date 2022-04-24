@@ -14,4 +14,4 @@ if (!file_exists($usersfile)) {
 $jsonusers = file_get_contents($usersfile);
 $users = json_decode($jsonusers, true);
 
-$failure = false;  // If we have no POST data
+$failure = false;
