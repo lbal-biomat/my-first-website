@@ -12,13 +12,20 @@ $jsondata = file_get_contents($datafile);
 $dogs = json_decode($jsondata, true);
 
 if ( isset($_POST["name"]) && $_POST["name"] != "") {
-    $dogs[$_POST["name"]] = array("Name" => $_POST["name"], "Breed" => $_POST["breed"], "Colour" =>  $_POST["colour"],
+
+    $_SESSION['info'] = array("Name" => $_POST["name"], "Breed" => $_POST["breed"], "Colour" =>  $_POST["colour"],
         "Date of birth" => $_POST["dob"], "Sex" => $_POST["sex"], "Description" => $_POST["description"],
         "Neutered" =>$_POST["neutered"], "Chipped" => $_POST["chip"], "Last vaccination" => $_POST["vax"],
         "Owner" => $_POST["owner"], "Owner's email" => $_POST["email"], "Owner's phone" => $_POST["phone"],
         "Comments" => $_POST["comments"]);
+    header("Location: register_dog.php");
+    return;
+}
 
+if ( isset($_SESSION["info"])) {
+    $dogs[$_SESSION["info"]["Name"]] = $_SESSION["info"];
     file_put_contents("$datafile", json_encode($dogs), LOCK_EX);
+    unset($_SESSION["info"]);
 }
 ?>
 
@@ -36,12 +43,9 @@ if ( isset($_POST["name"]) && $_POST["name"] != "") {
 
     <h1>Dog Registration Form</h1>
     <br>
-    <?php
-        $oldData = !empty($_POST) ? $_POST : '';
-    ?>
     <form method="post">
 
-        <label for="name" style="margin-right: 20px">Name: <input class="form-control" type="text" name="name" size="23" value=""/></label>
+        <label for="name" style="margin-right: 20px">Name: <input class="form-control" type="text" name="name" size="23" value="" required/></label>
         <label for="breed" style="margin-right: 20px">Breed: <input class="form-control" type="text" name="breed" size="22" value=""/></label>
         <label for="colour">Colour: <input class="form-control" type="text" name="colour" size="12" value=""/></label><br>
         <label for="dob" style="margin-right: 80px">Date of Birth: <input class="form-control" type="date" name="dob" value="" /></label>
@@ -71,8 +75,8 @@ if ( isset($_POST["name"]) && $_POST["name"] != "") {
         </div>
 
         <div class="form-check" style="margin-bottom: 20px">
-            <label for="owner" style="margin-right: 22px">Owner's name: <input class="form-control" type="text" name="owner" size="18" value=""/></label>
-            <label for="phone" style="margin-right: 22px">Owner's phone: <input class="form-control" type="text" name="phone" size="14" value=""/></label>
+            <label for="owner" style="margin-right: 22px">Owner's name: <input class="form-control" type="text" name="owner" size="18" value="" required/></label>
+            <label for="phone" style="margin-right: 22px">Owner's phone: <input class="form-control" type="text" name="phone" size="14" value="" required/></label>
             <label for="email">Owner's email: <input class="form-control" type="email" name="email" size="25" value=""/> </label>
         </div>
 

@@ -2,13 +2,7 @@
 
 require_once "session_starter.php";
 
-$usersfile = "files/users.json";
-
-if ( isset($_POST['logout']) ) {
-    $_SESSION[session_id()] = 0;
-    header('Location: login.php');
-    return;
-}
+$_SESSION[session_id()] = 0;
 
 // Check to see if we have some POST data, if we do process it
 if ( isset($_POST['who']) && isset($_POST['pass']) ) {
@@ -18,8 +12,8 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
         $failure = "User name not in the system";
     }
     else {
-        $user_pw = $users[$_POST['who']];
-        $salt = $_POST['who'];
+        $user_pw = $users[$_POST['who']]["ps"];
+        $salt = $users[$_POST['who']]['salt'];
         $check = hash('sha512', $salt.$_POST['pass']);
         if ( $check == $user_pw ) {
             $_SESSION[session_id()] = 1;
@@ -29,6 +23,12 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
             $failure = "Incorrect password";
         }
     }
+}
+
+if ( isset($failure) && $failure !== false ) {
+    $_SESSION["failure"] = $failure;
+    header("Location: login.php");
+    return;
 }
 ?>
 
@@ -48,8 +48,9 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     <br>
 
     <?php
-    if ( $failure !== false ) {
-        echo('<p style="color: red;">'.htmlentities($failure)."</p>\n");
+    if (isset($_SESSION["failure"]) ) {
+        echo('<p style="color: red;">'.htmlentities($_SESSION["failure"])."</p>\n");
+        unset($_SESSION["failure"]);
     }
     ?>
 

@@ -1,5 +1,5 @@
 body {
-  font-family: Helvetica, arial, sans-serif;
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   background-image: url('background.jpg');
   line-height: 1.6;
   margin: 20px;
@@ -81,14 +81,8 @@ li {
 }
 
 .btn.btn-link.logout {
-  border: none;
   font-size: 1.5rem;
-  margin-right: 1.07rem;
-  line-height: 40px;
-  background-color: transparent;
-  color: snow;
-  box-shadow: 0 0 0;
-  outline: transparent 0;
+  margin-right: 30px;
 }
 
 .navbar-inverse .nav > li > a:hover,
