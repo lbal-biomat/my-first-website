@@ -1,6 +1,8 @@
 <?php // No HTML above this line
 
 require_once "session_starter.php";
+require_once "bootstrap.php";
+require_once "navbar.php";
 
 
 // Check to see if we have some POST data, if we do process it
@@ -34,10 +36,8 @@ if ( isset($failure) && $failure !== false ) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require_once "bootstrap.php"; ?>
-    <?php include 'navbar.php';?>
     <title>Log in</title>
-    <link type="text/css" rel="stylesheet" href="rules.css">
+    <link type="text/css" rel="stylesheet" href="../css/rules.css">
     <meta charset="UTF-8">
 </head>
 <body>

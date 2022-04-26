@@ -2,8 +2,10 @@
 
 require_once "session_starter.php";
 require_once "salt_generator.php";
+require_once "bootstrap.php";
+require_once "navbar.php";
 
-$usersfile = "files/users.json";
+$usersfile = "../files/users.json";
 
 if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     if (strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1) {
@@ -34,10 +36,8 @@ if ( isset($failure) && $failure !== false ) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require_once "bootstrap.php"; ?>
-    <?php include 'navbar.php';?>
     <title>New password</title>
-    <link type="text/css" rel="stylesheet" href="rules.css">
+    <link type="text/css" rel="stylesheet" href="../css/rules.css">
     <meta charset="UTF-8">
 </head>
 
