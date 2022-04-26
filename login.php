@@ -2,7 +2,6 @@
 
 require_once "session_starter.php";
 
-$_SESSION[session_id()] = 0;
 
 // Check to see if we have some POST data, if we do process it
 if ( isset($_POST['who']) && isset($_POST['pass']) ) {
