@@ -23,3 +23,6 @@ of the project I had the most fun with while learning to implement, and also the
 The site is styled with CSS and bootstrap. I'm not a designer, and I did not want to spend a lot of time 
 with the design, but the site was looking a little sad. I didn't want my dog related site to
 look sad, so I shamelessly stole one of the background images of WhatsApp.
+
+
+![Captura de pantalla de 2022-04-26 15-35-01](https://user-images.githubusercontent.com/76665262/165371441-3d33ccb6-e612-4ab4-acc0-c569870c0206.png)
