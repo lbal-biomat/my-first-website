@@ -1,8 +1,10 @@
 <?php
 
 require_once "session_checker.php";
+require_once "bootstrap.php";
+require_once "navbar.php";
 
-$datafile = "files/dogsfile.json";
+$datafile = "../files/dogsfile.json";
 
 if (!file_exists($datafile)) {
     file_put_contents($datafile, '');
@@ -18,11 +20,8 @@ if ( isset($_GET["name"]) && $_GET["name"] != "") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require_once "bootstrap.php"; ?>
-
-    <?php include 'navbar.php';?>
     <title>Retrieve dog information</title>
-    <link type="text/css" rel="stylesheet" href="rules.css">
+    <link type="text/css" rel="stylesheet" href="../css/rules.css">
     <meta charset="UTF-8">
 </head>
 <body>
