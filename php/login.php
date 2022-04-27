@@ -18,6 +18,7 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
         $check = hash('sha512', $salt.$_POST['pass']);
         if ( $check == $user_pw ) {
             $_SESSION[session_id()] = 1;
+            $_SESSION["name"] = $_POST['who'];
             header("Location: index.php");
             return;
         } else {

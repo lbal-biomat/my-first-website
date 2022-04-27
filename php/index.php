@@ -24,7 +24,7 @@ curl_close($curl);
 
     <div class="box welcome" style="background: snow; width: 30%; padding: 5px 20px 20px; margin-top: 50px">
         <h1>Welcome</h1>
-        <h4><b>You are logged in.<br>
+        <h4><b>You are logged in as <?php 'echo <pre>'; echo $user; 'echo </pre>' ?>.<br>
         Where do you want to go from here?<b></h4>
         <form method="post">
 
